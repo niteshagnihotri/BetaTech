@@ -142,6 +142,8 @@ router.post("/driver_login", async (req, res) => {
       if (!driverLogin) {
         res.status(401).json({ errorMessage: "Account Not Exist" });
       } else {
+        const driverId = driverLogin.driverId;
+        const name = driverLogin.name;
         const isMatch = await bcrypt.compare(password, driverLogin.password);
         if (!isMatch) {
           res.status(403).json({ errorMessage: "Enter Correct Details" });
@@ -149,6 +151,14 @@ router.post("/driver_login", async (req, res) => {
           const token = await driverLogin.generateAuthToken();
           if (token) {
             res.cookie("drivertoken", token, {
+              expires: new Date(Date.now() + 50000),
+              httpOnly: false,
+            });
+            res.cookie("name", name, {
+              expires: new Date(Date.now() + 50000),
+              httpOnly: false,
+            });
+            res.cookie("driverId", driverId, {
               expires: new Date(Date.now() + 50000),
               httpOnly: false,
             });
