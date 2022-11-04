@@ -6,6 +6,7 @@ const authenticate = require("../middleware/authenticate");
 const { db } = require("../models/user");
 const Driver = require("../models/driver");
 const Admin = require("../models/admin");
+const Complaints = require("../models/complaints");
 
 //User Register
 router.post("/user_register", async (req, res) => {
@@ -222,6 +223,41 @@ router.post("/admin_login", async (req, res) => {
 });
 
 
+
+
+
+//User Complaints
+router.post("/user_complaints", async (req, res) => {
+  const {username, phone, area, locality, date, landmark, note} = req.body;
+  if (!username || !phone || !area || !locality || !date || !landmark || !note ) {
+    res.status(401).json({ errorMessage: "Please Enter All Data" });
+  }else {
+    try {
+        const complaintId = Date.now();
+        const complaint = new Complaints({
+          complaintId,
+          username,
+          phone,
+          area,
+          locality,
+          date,
+          landmark,
+          note,
+        });
+        const userComplaint = await complaint.save();
+        if (userComplaint) {
+          res.status(240).json({ message: "Complaint Sent" });
+        } else {
+          res.status(400).join({ errorMessage: "Complaint sent Failed" });
+        }
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+
 // router.get("/contact", async (req, res) => {
 //   const data = await User.find({});
 //   try {
@@ -246,6 +282,8 @@ router.post("/admin_login", async (req, res) => {
 // router.get("/getdata", authenticate, (req, res) => { 
 //   return req.rootUser;
 // });
+
+
 
 router.get("/logout", (req, res) => {
   res.clearCookie("usertoken", { path: "/" });
