@@ -9,26 +9,26 @@ const Dashboard = () => {
       Welcome to user panel !! User name
     </div>
     <div className="btn mb-10 mt-5  ml-[5rem]">
-    <button type="button" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View Profile</button>
+    <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View Profile</button>
     </div>
       <div className="">
       <div className="flex items-center justify-center first-line:" >
-        <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 ml-10 mr-10  w-1/4">
+        <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 ml-10 mr-10  w-1/4">
           <Link to="">
-            <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white ">
+            <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white ">
               Total Lodged Complain
             </h5>
           </Link>
-          <p class="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
+          <p className="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
             1
           </p>
           <Link
             to="/"
-            class="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-blue-600 hover:underline"
           >
             View details
             <svg
-              class="ml-2 w-5 h-5"
+              className="ml-2 w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -38,22 +38,22 @@ const Dashboard = () => {
             </svg>
           </Link>
         </div>
-        <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700  ml-10 mr-10  w-1/4">
+        <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700  ml-10 mr-10  w-1/4">
           <Link to="">
-            <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
               New Lodged Complain
             </h5>
           </Link>
-          <p class="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
+          <p className="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
             1
           </p>
           <Link
             to="/"
-            class="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-blue-600 hover:underline"
           >
             View details
             <svg
-              class="ml-2 w-5 h-5"
+              className="ml-2 w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -63,22 +63,22 @@ const Dashboard = () => {
             </svg>
           </Link>
         </div>
-        <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700  ml-10 mr-10 w-1/4">
+        <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700  ml-10 mr-10 w-1/4">
           <Link to="">
-            <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Completed Lodged Complain
             </h5>
           </Link>
-          <p class="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
+          <p className="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
             1
           </p>
           <Link
             to="/"
-            class="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-blue-600 hover:underline"
           >
             View details
             <svg
-              class="ml-2 w-5 h-5"
+              className="ml-2 w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"

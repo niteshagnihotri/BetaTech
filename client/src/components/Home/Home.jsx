@@ -11,35 +11,35 @@ const Home = () => {
         </div>
 
         <div className='flex justify-center space-x-20 font-Poppins'>
-          <div class="flex justify-center ">
-            <div class="block p-6 rounded-lg w-80 shadow-lg bg-gray-800 text-slate-300 space-y-8">
-              <h5 class=" text-xl leading-tight font-medium mb-2">Total Lodged Complains</h5>
-              <p class="text-3xl  ml-2">
+          <div className="flex justify-center ">
+            <div className="block p-6 rounded-lg w-80 shadow-lg bg-gray-800 text-slate-300 space-y-8">
+              <h5 className=" text-xl leading-tight font-medium mb-2">Total Lodged Complains</h5>
+              <p className="text-3xl  ml-2">
                 40
               </p>
-              <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Learn More</button>
+              <button type="button" className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Learn More</button>
             </div>
           </div>
 
           
-          <div class="flex justify-center ">
-            <div class="block p-6 rounded-lg w-80 shadow-lg bg-gray-800 text-slate-300 space-y-8">
-              <h5 class=" text-xl leading-tight font-medium mb-2">Total Complains Resolved</h5>
-              <p class="text-3xl  ml-2">
+          <div className="flex justify-center ">
+            <div className="block p-6 rounded-lg w-80 shadow-lg bg-gray-800 text-slate-300 space-y-8">
+              <h5 className=" text-xl leading-tight font-medium mb-2">Total Complains Resolved</h5>
+              <p className="text-3xl  ml-2">
                 36
               </p>
-              <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Learn More</button>
+              <button type="button" className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Learn More</button>
             </div>
           </div>
 
           
-          <div class="flex justify-center ">
-            <div class="block p-6 rounded-lg w-80 shadow-lg bg-gray-800 text-slate-300 space-y-8">
-              <h5 class=" text-xl leading-tight font-medium mb-2">Total Bins Installed</h5>
-              <p class="text-3xl  ml-2">
+          <div className="flex justify-center ">
+            <div className="block p-6 rounded-lg w-80 shadow-lg bg-gray-800 text-slate-300 space-y-8">
+              <h5 className=" text-xl leading-tight font-medium mb-2">Total Bins Installed</h5>
+              <p className="text-3xl  ml-2">
                 4
               </p>
-              <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Learn More</button>
+              <button type="button" className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Learn More</button>
             </div>
           </div>
         </div>
