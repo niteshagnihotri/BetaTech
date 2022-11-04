@@ -21,7 +21,7 @@ const adminActionSchema = new mongoose.Schema({
     type: String,
     required: String,
   },
-  action: {
+  status: {
     type: String,
     required: String,
   },

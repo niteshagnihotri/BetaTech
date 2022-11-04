@@ -93,11 +93,18 @@ router.post("/user_login", async (req, res) => {
   }
 });
 
-
 //Driver Register
 router.post("/driver_register", async (req, res) => {
   const { name, email, phone, city, password, cpassword, licenseid } = req.body;
-  if (!name || !email || !phone || !city || !password || !cpassword || !licenseid) {
+  if (
+    !name ||
+    !email ||
+    !phone ||
+    !city ||
+    !password ||
+    !cpassword ||
+    !licenseid
+  ) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   } else if (password !== cpassword) {
     res.status(402).json({ errorMessage: "Password Should Be Same" });
@@ -176,12 +183,10 @@ router.post("/driver_login", async (req, res) => {
   }
 });
 
-
-
 //Admin Register
 router.post("/admin_register", async (req, res) => {
-  const {email, password, cpassword} = req.body;
-  if (!email || !password || !cpassword ) {
+  const { email, password, cpassword } = req.body;
+  if (!email || !password || !cpassword) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   } else if (password !== cpassword) {
     res.status(402).json({ errorMessage: "Password Should Be Same" });
@@ -255,33 +260,41 @@ router.post("/admin_login", async (req, res) => {
   }
 });
 
-
 //User Complaints
 router.post("/user_complaints", async (req, res) => {
-  const {userId, username, phone, area, locality, date, landmark, note} = req.body;
-  if (!userId || !username || !phone || !area || !locality || !date || !landmark || !note ) {
+  const { userId, username, phone, area, locality, date, landmark, note } =
+    req.body;
+  if (
+    !userId ||
+    !username ||
+    !phone ||
+    !area ||
+    !locality ||
+    !date ||
+    !landmark ||
+    !note
+  ) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
-  }else {
+  } else {
     try {
-        const complaintId = Date.now();
-        const complaint = new Complaints({
-          complaintId,
-          userId,
-          username,
-          phone,
-          area,
-          locality,
-          date,
-          landmark,
-          note,
-        });
-        const userComplaint = await complaint.save();
-        if (userComplaint) {
-          res.status(240).json({ message: "Complaint Sent" });
-        } else {
-          res.status(400).join({ errorMessage: "Complaint sent Failed" });
-        }
-      
+      const complaintId = Date.now();
+      const complaint = new Complaints({
+        complaintId,
+        userId,
+        username,
+        phone,
+        area,
+        locality,
+        date,
+        landmark,
+        note,
+      });
+      const userComplaint = await complaint.save();
+      if (userComplaint) {
+        res.status(240).json({ message: "Complaint Sent" });
+      } else {
+        res.status(400).join({ errorMessage: "Complaint sent Failed" });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -306,7 +319,6 @@ router.get("/get_drivers", async (req, res) => {
   }
 });
 
-
 //Get Complaints
 router.get("/get_complaints", async (req, res) => {
   const data = await Complaint.find({});
@@ -325,61 +337,64 @@ router.get("/get_complaints", async (req, res) => {
   }
 });
 
-
-
 //Admin Action
 router.post("/admin_actions", async (req, res) => {
-  const {complaintId, drivername, area, locality, landmark, action, date} = req.body;
-  if (!complaintId || !drivername || !area || !locality || !landmark || !action) {
+  const { complaintId, drivername, area, locality, landmark, status, date } =
+    req.body;
+  if (
+    !complaintId ||
+    !drivername ||
+    !area ||
+    !locality ||
+    !landmark ||
+    !status ||
+    !date
+  ) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
-  }else {
+  } else {
     try {
-        const actionD = new AdminAction({
-          complaintId,
-          drivername,
-          area,
-          locality,
-          landmark,
-          action,
-          date
-        });
-        const adminAction = await actionD.save();
-        if (adminAction) {
-          res.status(240).json({ message: "Action Sent to Driver" });
-        } else {
-          res.status(400).join({ errorMessage: "Action Failed" });
-        }
-      
+      const actionD = new AdminAction({
+        complaintId,
+        drivername,
+        area,
+        locality,
+        landmark,
+        status,
+        date,
+      });
+      const adminAction = await actionD.save();
+      if (adminAction) {
+        res.status(240).json({ message: "Action Sent to Driver" });
+      } else {
+        res.status(400).join({ errorMessage: "Action Failed" });
+      }
     } catch (err) {
       console.log(err);
     }
   }
 });
 
-
-
 //Create Bin
 router.post("/create_bin", async (req, res) => {
-  const {binId, area, locality, landmark, date} = req.body;
+  const { binId, area, locality, landmark, date } = req.body;
   if (!binId || !area || !locality || !landmark || !date) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
-  }else {
+  } else {
     try {
       const binId = Date.now();
-        const newBin = new Bin({
-          binId,
-          area,
-          locality,
-          landmark,
-          date
-        });
-        const createBin = await newBin.save();
-        if (createBin) {
-          res.status(240).json({ message: "Bin Created" });
-        } else {
-          res.status(400).join({ errorMessage: "Bin is not Created" });
-        }
-      
+      const newBin = new Bin({
+        binId,
+        area,
+        locality,
+        landmark,
+        date,
+      });
+      const createBin = await newBin.save();
+      if (createBin) {
+        res.status(240).json({ message: "Bin Created" });
+      } else {
+        res.status(400).join({ errorMessage: "Bin is not Created" });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -388,39 +403,51 @@ router.post("/create_bin", async (req, res) => {
 
 //Assign Bin
 router.post("/assign_bin", async (req, res) => {
-  const {binId, drivername, area, locality, landmark, date} = req.body;
+  const { binId, drivername, area, locality, landmark, date } = req.body;
   if (!binId || !drivername || !area || !locality || !landmark || !date) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
-  }else {
+  } else {
     try {
-        const newAssignBin = new driverAssignBin({
-          binId,
-          drivername,
-          area,
-          locality,
-          landmark,
-          date
-        });
-        const createBin = await newAssignBin.save();
-        if (createBin) {
-          res.status(240).json({ message: "Bin Assigned to Driver" });
-        } else {
-          res.status(400).join({ errorMessage: "Bin is not Assigned" });
-        }
-      
+      const newAssignBin = new driverAssignBin({
+        binId,
+        drivername,
+        area,
+        locality,
+        landmark,
+        date,
+      });
+      const createBin = await newAssignBin.save();
+      if (createBin) {
+        res.status(240).json({ message: "Bin Assigned to Driver" });
+      } else {
+        res.status(400).join({ errorMessage: "Bin is not Assigned" });
+      }
     } catch (err) {
       console.log(err);
     }
   }
 });
 
+//Update Assign Complain
+router.patch("/update_action/:id", async (req, res) => {
+  const { id: _id } = req.params;
+  const { drivername, area, locality, landmark, status, date } = req.body;
+  try {
+    const updateAction = await AdminAction.findByIdAndUpdate(
+      _id,
+      { $set: { drivername: drivername, area: area, locality: locality, landmark: landmark, status: status, date: date } },
+      { new: true }
+    );
+    res.status(200).json(updateAction);
+  } catch (error) {
+    res.status(405).json({ message: error.message });
+  }
+});
 
 //Logout
 router.get("/logout", (req, res) => {
   res.clearCookie("usertoken", { path: "/" });
   res.status(200).send("User Logout");
 });
-
-
 
 module.exports = router;
