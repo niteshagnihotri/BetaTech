@@ -72,15 +72,15 @@ router.post("/user_login", async (req, res) => {
           const token = await userLogin.generateAuthToken();
           if (token) {
             res.cookie("usertoken", token, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.cookie("name", name, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.cookie("userId", userId, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.status(201).json({ message: "Login Successfull" });
@@ -162,15 +162,15 @@ router.post("/driver_login", async (req, res) => {
           const token = await driverLogin.generateAuthToken();
           if (token) {
             res.cookie("drivertoken", token, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.cookie("name", name, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.cookie("driverId", driverId, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.status(201).json({ message: "Login Successfull" });
@@ -239,15 +239,15 @@ router.post("/admin_login", async (req, res) => {
           const token = await adminLogin.generateAuthToken();
           if (token) {
             res.cookie("admintoken", token, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             // res.cookie("name", name, {
-            //   expires: new Date(Date.now() + 50000),
+            //   expires: new Date(Date.now() + 1000000),
             //   httpOnly: false,
             // });
             res.cookie("adminId", adminId, {
-              expires: new Date(Date.now() + 50000),
+              expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
             res.status(201).json({ message: "Login Successfull" });
