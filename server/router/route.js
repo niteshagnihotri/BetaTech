@@ -58,6 +58,8 @@ router.post("/user_login", async (req, res) => {
       if (!userLogin) {
         res.status(401).json({ errorMessage: "Account Not Exist" });
       } else {
+        const userId = userLogin.userId;
+        const name = userLogin.name;
         const isMatch = await bcrypt.compare(password, userLogin.password);
         if (!isMatch) {
           res.status(403).json({ errorMessage: "Enter Correct Details" });
@@ -65,6 +67,14 @@ router.post("/user_login", async (req, res) => {
           const token = await userLogin.generateAuthToken();
           if (token) {
             res.cookie("usertoken", token, {
+              expires: new Date(Date.now() + 50000),
+              httpOnly: false,
+            });
+            res.cookie("name", name, {
+              expires: new Date(Date.now() + 50000),
+              httpOnly: false,
+            });
+            res.cookie("userId", userId, {
               expires: new Date(Date.now() + 50000),
               httpOnly: false,
             });
@@ -193,7 +203,6 @@ router.post("/admin_register", async (req, res) => {
 router.post("/admin_login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
       return res.status(400).json({ errorMessage: "Please Enter Details" });
     } else {
