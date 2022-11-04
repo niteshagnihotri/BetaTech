@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 const UserDashboard = () => {
   return (
     <>
-      <aside className="w-64 fixed" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800 h-screen">
+      <aside class="w-64 fixed " aria-label="Sidebar">
+        <div class="overflow-y-auto py-4 pt-[80px] px-3 bg-gray-50 rounded dark:bg-gray-800 h-screen">
           <div className="flex items-center justify-center flex-col mt-4 mb-4">
          
             <img
-              src="./image/images.png "
-              className="rounded-full w-24 mb-4  "
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK6uAwJ2JNN2hrgWi18n2nGk5iJ9yF7N7ghg&usqp=CAU"
+              class="rounded-full w-24 mb-4  "
               alt="Avatar"
             />
                 <h2 className="text-white text-xl items-center mb-2 first-letter:" >Jho Deo</h2>
@@ -21,8 +21,8 @@ const UserDashboard = () => {
           <ul className="space-y-2">
             <li>
               <Link
-                to="/dashboard"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                to="/user_dashboard/"
+                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   aria-hidden="true"
@@ -40,8 +40,8 @@ const UserDashboard = () => {
 
             <li>
               <Link
-                to="/"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                to="/user_dashboard/user_comp"
+                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   aria-hidden="true"
