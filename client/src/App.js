@@ -14,7 +14,7 @@ import Dashboard from "./components/UserDashboard/Dashboard";
 function App() {
   return (
     <div>
-      <Navbar />
+     <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user_register" element={<UserRegister />} />
@@ -24,6 +24,7 @@ function App() {
         <Route path="/admin_login" element={<AdminLogin />} />
         <Route path="/user_dashboard/" element={<Dashboard />} />
         <Route path="/user_dashboard/user_comp" element={<UserComplaints />} />
+
       </Routes>
       {/* <Footer/> */}
     </div>
