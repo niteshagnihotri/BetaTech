@@ -225,9 +225,19 @@ router.post("/admin_login", async (req, res) => {
         if (!isMatch) {
           res.status(403).json({ errorMessage: "Enter Correct Details" });
         } else {
+          const adminId = adminLogin.adminId;
+          // const name = adminLogin.name;/
           const token = await adminLogin.generateAuthToken();
           if (token) {
             res.cookie("admintoken", token, {
+              expires: new Date(Date.now() + 50000),
+              httpOnly: false,
+            });
+            // res.cookie("name", name, {
+            //   expires: new Date(Date.now() + 50000),
+            //   httpOnly: false,
+            // });
+            res.cookie("adminId", adminId, {
               expires: new Date(Date.now() + 50000),
               httpOnly: false,
             });
@@ -240,9 +250,6 @@ router.post("/admin_login", async (req, res) => {
     console.log(err);
   }
 });
-
-
-
 
 
 //User Complaints
