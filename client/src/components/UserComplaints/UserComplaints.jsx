@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
+import UserDashboard from "../UserDashboard/UserDashboard";
 
 const UserComplaints = () => {
 
@@ -50,9 +51,10 @@ const UserComplaints = () => {
 }
   return (
     <div>
+           <UserDashboard/>
       <section className="text-gray-400 bg-gray-900 body-font h-[100%]">
-        <div className="container px-5 py-24 mx-auto flex justify-center  items-center">
-          <div className="w-[90%] bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0">
+        <div className="container px-5 pl-64 py-24 mx-auto flex justify-center  items-center">
+          <div className="w-[90%]  bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0">
             <h2 className="text-white text-lg font-medium text-center font-bold title-font mb-5">
               Plz Enter Your Complaint
             </h2>
