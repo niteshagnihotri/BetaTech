@@ -386,7 +386,7 @@ router.post("/assign_bin", async (req, res) => {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   }else {
     try {
-        const newBin = new driverAssignBin({
+        const newAssignBin = new driverAssignBin({
           binId,
           drivername,
           area,
@@ -394,7 +394,7 @@ router.post("/assign_bin", async (req, res) => {
           landmark,
           date
         });
-        const createBin = await newBin.save();
+        const createBin = await newAssignBin.save();
         if (createBin) {
           res.status(240).json({ message: "Bin Assigned to Driver" });
         } else {
