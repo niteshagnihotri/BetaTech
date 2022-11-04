@@ -228,14 +228,15 @@ router.post("/admin_login", async (req, res) => {
 
 //User Complaints
 router.post("/user_complaints", async (req, res) => {
-  const {username, phone, area, locality, date, landmark, note} = req.body;
-  if (!username || !phone || !area || !locality || !date || !landmark || !note ) {
+  const {userId, username, phone, area, locality, date, landmark, note} = req.body;
+  if (!userId || !username || !phone || !area || !locality || !date || !landmark || !note ) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   }else {
     try {
         const complaintId = Date.now();
         const complaint = new Complaints({
           complaintId,
+          userId,
           username,
           phone,
           area,
