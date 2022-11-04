@@ -1,4 +1,4 @@
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AdminLogin from "./components/AdminLogin/AdminLogin";
 import DriverLogin from "./components/DriverLogin/DriverLogin";
 import DriverRegister from "./components/DriverRegister/DriverRegister";
@@ -8,7 +8,6 @@ import Navbar from "./components/Navbar/Navbar";
 import UserComplaints from "./components/UserComplaints/UserComplaints";
 import UserLogin from "./components/UserLogin/UserLogin";
 import UserRegister from "./components/UserRegister/UserRegister";
-import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Dashboard from "./components/UserDashboard/Dashboard";
 
 function App() {
@@ -24,9 +23,8 @@ function App() {
         <Route path="/admin_login" element={<AdminLogin />} />
         <Route path="/user_dashboard/" element={<Dashboard />} />
         <Route path="/user_dashboard/user_comp" element={<UserComplaints />} />
-
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 }

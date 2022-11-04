@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +27,7 @@ const UserLogin = () => {
         } else if (res.status === 201) {
           // dispatch({type : "USER", payload: true})
           window.alert("Login Successfull");
-          // window.alert("Login Successfull");
-          // history("/");
+          navigate("/user_dashboard");
           setTimeout(() => {
             var usertoken = Cookies.get("usertoken");
             if (usertoken) {
@@ -36,7 +36,7 @@ const UserLogin = () => {
               Cookies.remove("name", { path: "" });
               Cookies.remove("userId", { path: "" });
               window.alert("User Logged Out");
-              // history('/login');
+              navigate('/user_login');
               window.location.reload();
             } else {
               Cookies.remove("usertoken", { path: "" });
