@@ -30,21 +30,21 @@ const UserLogin = () => {
           navigate("/user_dashboard");
           setTimeout(() => {
             var usertoken = Cookies.get("usertoken");
-            if (usertoken) {
-              // dispatch({type : "USER", payload: false});
+            if (usertoken==="") {
               Cookies.remove("usertoken", { path: "" });
-              Cookies.remove("name", { path: "" });
+              Cookies.remove("username", { path: "" });
               Cookies.remove("userId", { path: "" });
               window.alert("User Logged Out");
               navigate('/user_login');
-              window.location.reload();
-            } else {
-              Cookies.remove("usertoken", { path: "" });
-              Cookies.remove("name", { path: "" });
-              Cookies.remove("userId", { path: "" });
-              console.log("user already logged out");
-            }
-            window.alert("User Logged Out")
+            } 
+            // else {
+            //   Cookies.remove("usertoken", { path: "" });
+            //   Cookies.remove("username", { path: "" });
+            //   Cookies.remove("userId", { path: "" });
+            //   console.log("user already logged out");
+            //   navigate('/user_login');
+            // }
+            // window.alert("User Logged Out")
           }, 100000);
         } else if (res.status === 403) {
           window.alert("Enter Correct Details");

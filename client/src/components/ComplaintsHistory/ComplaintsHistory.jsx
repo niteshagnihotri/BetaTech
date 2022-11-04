@@ -40,7 +40,7 @@ const ComplaintsHistory = () => {
               <td className="py-4 px-6">$2999</td>
               <td className="py-4 px-6">
                 <a
-                  href="#"
+                  href="/"
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Edit
@@ -59,7 +59,7 @@ const ComplaintsHistory = () => {
               <td className="py-4 px-6">$1999</td>
               <td className="py-4 px-6">
                 <a
-                  href="#"
+                  href="/"
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Edit

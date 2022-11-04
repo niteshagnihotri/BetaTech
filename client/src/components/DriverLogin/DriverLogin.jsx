@@ -45,7 +45,7 @@ const DriverLogin = () => {
                         Cookies.remove('driverId', { path: '' });
                         console.log("driver already logged out");
                     }
-                }, 48000);
+                }, 100000);
 
             }
             else if (res.status === 403) {
