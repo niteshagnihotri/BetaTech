@@ -8,11 +8,14 @@ import Navbar from "./components/Navbar/Navbar";
 import UserComplaints from "./components/UserComplaints/UserComplaints";
 import UserLogin from "./components/UserLogin/UserLogin";
 import UserRegister from "./components/UserRegister/UserRegister";
+import UserDashboard from "./components/UserDashboard/UserDashboard";
+import Dashboard from "./components/UserDashboard/Dashboard";
 
 function App() {
   return (
     <div>
-     <Navbar />
+     {/* <Navbar /> */}
+     <UserDashboard />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user_register" element={<UserRegister />} />
