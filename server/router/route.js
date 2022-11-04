@@ -7,6 +7,10 @@ const { db } = require("../models/user");
 const Driver = require("../models/driver");
 const Admin = require("../models/admin");
 const Complaints = require("../models/complaints");
+const Complaint = require("../models/complaints");
+const AdminAction = require("../models/adminAction");
+const Bin = require("../models/createBin");
+const driverAssignBin = require("../models/assignBin");
 
 //User Register
 router.post("/user_register", async (req, res) => {
@@ -284,37 +288,139 @@ router.post("/user_complaints", async (req, res) => {
   }
 });
 
-
-// router.get("/contact", async (req, res) => {
-//   const data = await User.find({});
-//   try {
-//     res.status(200).json({
-//       status: "Success",
-//       data: {
-//         data,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       status: "Failed",
-//       message: err,
-//     });
-//   }
-// });
-
-// router.get("/about", authenticate, (req, res) => {
-//   return req.rootUser;
-// });
-
-// router.get("/getdata", authenticate, (req, res) => { 
-//   return req.rootUser;
-// });
+//Get Drivers
+router.get("/get_drivers", async (req, res) => {
+  const data = await Driver.find({});
+  try {
+    res.status(200).json({
+      status: "Success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+});
 
 
+//Get Complaints
+router.get("/get_complaints", async (req, res) => {
+  const data = await Complaint.find({});
+  try {
+    res.status(200).json({
+      status: "Success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+});
 
+
+
+//Admin Action
+router.post("/admin_actions", async (req, res) => {
+  const {complaintId, drivername, area, locality, landmark, action, date} = req.body;
+  if (!complaintId || !drivername || !area || !locality || !landmark || !action) {
+    res.status(401).json({ errorMessage: "Please Enter All Data" });
+  }else {
+    try {
+        const actionD = new AdminAction({
+          complaintId,
+          drivername,
+          area,
+          locality,
+          landmark,
+          action,
+          date
+        });
+        const adminAction = await actionD.save();
+        if (adminAction) {
+          res.status(240).json({ message: "Action Sent to Driver" });
+        } else {
+          res.status(400).join({ errorMessage: "Action Failed" });
+        }
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+
+
+//Create Bin
+router.post("/create_bin", async (req, res) => {
+  const {binId, area, locality, landmark, date} = req.body;
+  if (!binId || !area || !locality || !landmark || !date) {
+    res.status(401).json({ errorMessage: "Please Enter All Data" });
+  }else {
+    try {
+      const binId = Date.now();
+        const newBin = new Bin({
+          binId,
+          area,
+          locality,
+          landmark,
+          date
+        });
+        const createBin = await newBin.save();
+        if (createBin) {
+          res.status(240).json({ message: "Bin Created" });
+        } else {
+          res.status(400).join({ errorMessage: "Bin is not Created" });
+        }
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+//Assign Bin
+router.post("/assign_bin", async (req, res) => {
+  const {binId, drivername, area, locality, landmark, date} = req.body;
+  if (!binId || !drivername || !area || !locality || !landmark || !date) {
+    res.status(401).json({ errorMessage: "Please Enter All Data" });
+  }else {
+    try {
+        const newAssignBin = new driverAssignBin({
+          binId,
+          drivername,
+          area,
+          locality,
+          landmark,
+          date
+        });
+        const createBin = await newAssignBin.save();
+        if (createBin) {
+          res.status(240).json({ message: "Bin Assigned to Driver" });
+        } else {
+          res.status(400).join({ errorMessage: "Bin is not Assigned" });
+        }
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+
+//Logout
 router.get("/logout", (req, res) => {
   res.clearCookie("usertoken", { path: "/" });
   res.status(200).send("User Logout");
 });
+
+
 
 module.exports = router;
