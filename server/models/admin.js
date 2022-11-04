@@ -2,12 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const driverSchema = new mongoose.Schema({
-  driverId: {
-    type: String,
-    required: true,
-  },
-  name: {
+const adminSchema = new mongoose.Schema({
+  adminId: {
     type: String,
     required: true,
   },
@@ -15,21 +11,10 @@ const driverSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  phone: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
   password: {
     type: String,
   },
   cpassword: {
-    type: String,
-  },
-  licenseid:{
     type: String,
   },
   tokens: [
@@ -42,7 +27,7 @@ const driverSchema = new mongoose.Schema({
   ],
 });
 
-driverSchema.pre("save", async function (next) {
+adminSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 12);
     this.cpassword = await bcrypt.hash(this.cpassword, 12);
@@ -50,7 +35,7 @@ driverSchema.pre("save", async function (next) {
   next();
 });
 
-driverSchema.methods.generateAuthToken = async function () {
+adminSchema.methods.generateAuthToken = async function () {
   let token;
   try {
     token = jwt.sign({ _id: this.id }, process.env.SECRET_KEY);
@@ -62,5 +47,5 @@ driverSchema.methods.generateAuthToken = async function () {
   }
 };
 
-const Driver = mongoose.model("Driver", driverSchema);
-module.exports = Driver;
+const Admin = mongoose.model("Admin", adminSchema);
+module.exports = Admin;
