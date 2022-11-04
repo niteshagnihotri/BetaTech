@@ -5,6 +5,7 @@ import DriverRegister from "./components/DriverRegister/DriverRegister";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+import UserComplaints from "./components/UserComplaints/UserComplaints";
 import UserLogin from "./components/UserLogin/UserLogin";
 import UserRegister from "./components/UserRegister/UserRegister";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
@@ -22,7 +23,7 @@ function App() {
         <Route path="/driver_register" element={<DriverRegister />} />
         <Route path="/driver_login" element={<DriverLogin />} />
         <Route path="/admin_login" element={<AdminLogin />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/user_comp" element={<UserComplaints />} />
       </Routes>
       <Footer/>
     </div>
