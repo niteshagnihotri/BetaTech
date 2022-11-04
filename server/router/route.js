@@ -262,9 +262,10 @@ router.post("/admin_login", async (req, res) => {
 
 //User Complaints
 router.post("/user_complaints", async (req, res) => {
-  const { userId, username, phone, area, locality, date, landmark, note } =
+  const { complaintId,userId, username, phone, area, locality, date, landmark, note } =
     req.body;
   if (
+    !complaintId ||
     !userId ||
     !username ||
     !phone ||
@@ -322,6 +323,26 @@ router.get("/get_drivers", async (req, res) => {
 //Get Complaints
 router.get("/get_complaints", async (req, res) => {
   const data = await Complaint.find({});
+  try {
+    res.status(200).json({
+      status: "Success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+});
+
+//Get User Complaints
+router.get("/get_user_complaints/:id", async (req, res) => {
+  const { id: userId } = req.params;
+  console.log(req.params.id)
+  const data = await Complaint.findById({id: userId});
   try {
     res.status(200).json({
       status: "Success",
@@ -428,7 +449,7 @@ router.post("/assign_bin", async (req, res) => {
   }
 });
 
-//Update Assign Complain
+//Update Assign Complaints
 router.patch("/update_action/:id", async (req, res) => {
   const { id: _id } = req.params;
   const { drivername, area, locality, landmark, status, date } = req.body;
