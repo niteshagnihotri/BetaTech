@@ -13,13 +13,11 @@ const UserComplaints = () => {
     const [btnDisable, setBtnDisable] = useState(false)
 
   useEffect(() => {
-    if(username == "" || phone == "" || area == "" || locality == "" || date == "" || landmark =="" || note ==""){
+    if(username === "" || phone === "" || area === "" || locality === "" || date === "" || landmark ==="" || note ===""){
         setBtnDisable(true);
     }
   }, [])
   
-    
-
     const handleSubmit = async (e) =>{
         var userToken = Cookies.get('usertoken')
       if(userToken){
@@ -52,8 +50,8 @@ const UserComplaints = () => {
     <div>
       <section className="text-gray-400 bg-gray-900 body-font h-[100%]">
         <div className="container px-5 py-24 mx-auto flex justify-center  items-center">
-          <div className="w-[90%] bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0">
-            <h2 className="text-white text-lg font-medium text-center font-bold title-font mb-5">
+          <div className=" bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0">
+            <h2 className="text-white text-lg font-medium text-center  title-font mb-5">
               Plz Enter Your Complaint
             </h2>
             <div className="relative mb-4">

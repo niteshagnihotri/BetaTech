@@ -14,8 +14,8 @@ import Dashboard from "./components/UserDashboard/Dashboard";
 function App() {
   return (
     <div>
-     {/* <Navbar /> */}
-     <UserDashboard />
+     <Navbar />
+     {/* <UserDashboard /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user_register" element={<UserRegister />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="/driver_register" element={<DriverRegister />} />
         <Route path="/driver_login" element={<DriverLogin />} />
         <Route path="/admin_login" element={<AdminLogin />} />
-        <Route path="/user_comp" element={<UserComplaints />} />
+        {/* <Route path="/user_comp" element={<UserComplaints />} /> */}
       </Routes>
       <Footer/>
     </div>
