@@ -11,6 +11,8 @@ import UserRegister from "./components/UserRegister/UserRegister";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Dashboard from "./components/UserDashboard/Dashboard";
 import ComplaintsHistory from "./components/ComplaintsHistory/ComplaintsHistory";
+import DriverDashboard from "./components/DriverDashboard/DriverDashboard";
+import DriverAssignTask from "./components/DriverAssignTask/DriverAssignTask";
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
         <Route path="/user_dashboard/" element={<Dashboard />} />
         <Route path="/user_dashboard/user_comp" element={<UserComplaints />} />
         <Route path="/user_dashboard/comp_history" element={<ComplaintsHistory />} />
+        <Route path="/driver_dashboard" element={<DriverDashboard />} />
+        <Route path="/driver_dashboard/driver_task" element={<DriverAssignTask />} />
+
       </Routes>
       {/* <Footer/> */}
     </div>
