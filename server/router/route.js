@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
 const { db } = require("../models/user");
 const Driver = require("../models/driver");
+const Admin = require("../models/admin");
 
 //User Register
 router.post("/user_register", async (req, res) => {
@@ -118,7 +119,7 @@ router.post("/driver_register", async (req, res) => {
   }
 });
 
-//User Login
+//Driver Login
 router.post("/driver_login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -149,6 +150,77 @@ router.post("/driver_login", async (req, res) => {
     console.log(err);
   }
 });
+
+
+
+//Admin Register
+router.post("/admin_register", async (req, res) => {
+  const {email, password, cpassword} = req.body;
+  if (!email || !password || !cpassword ) {
+    res.status(401).json({ errorMessage: "Please Enter All Data" });
+  } else if (password !== cpassword) {
+    res.status(402).json({ errorMessage: "Password Should Be Same" });
+  } else {
+    try {
+      const adminExist = await Admin.findOne({ email: email });
+
+      if (adminExist) {
+        return res.status(422).json({ error: "Email Already Exist" });
+      } else if (password != cpassword) {
+        return res.status(423).json({ error: "Password are not matched" });
+      } else {
+        const adminId = Date.now();
+        const admin = new Admin({
+          adminId,
+          email,
+          password,
+          cpassword,
+        });
+        const adminRegister = await admin.save();
+        if (adminRegister) {
+          res.status(240).json({ message: "Admin Registered" });
+        } else {
+          res.status(400).join({ errorMessage: "Registration Failed" });
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+//Admin Login
+router.post("/admin_login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ errorMessage: "Please Enter Details" });
+    } else {
+      const adminLogin = await Admin.findOne({ email: email });
+      if (!adminLogin) {
+        res.status(401).json({ errorMessage: "Account Not Exist" });
+      } else {
+        const isMatch = await bcrypt.compare(password, adminLogin.password);
+        if (!isMatch) {
+          res.status(403).json({ errorMessage: "Enter Correct Details" });
+        } else {
+          const token = await adminLogin.generateAuthToken();
+          if (token) {
+            res.cookie("admintoken", token, {
+              expires: new Date(Date.now() + 50000),
+              httpOnly: false,
+            });
+            res.status(201).json({ message: "Login Successfull" });
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 
 // router.get("/contact", async (req, res) => {
 //   const data = await User.find({});
