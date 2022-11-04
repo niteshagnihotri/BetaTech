@@ -9,6 +9,7 @@ import UserComplaints from "./components/UserComplaints/UserComplaints";
 import UserLogin from "./components/UserLogin/UserLogin";
 import UserRegister from "./components/UserRegister/UserRegister";
 import Dashboard from "./components/UserDashboard/Dashboard";
+import ComplaintsHistory from "./components/ComplaintsHistory/ComplaintsHistory";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/admin_login" element={<AdminLogin />} />
         <Route path="/user_dashboard/" element={<Dashboard />} />
         <Route path="/user_dashboard/user_comp" element={<UserComplaints />} />
+        <Route path="/user_dashboard/comp_history" element={<ComplaintsHistory />} />
       </Routes>
       <Footer/>
     </div>
