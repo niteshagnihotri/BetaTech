@@ -28,7 +28,9 @@ router.post("/user_register", async (req, res) => {
       } else if (password != cpassword) {
         return res.status(423).json({ error: "Password are not matched" });
       } else {
-        const userId = Date.now();
+        let ran_val = Math.floor((Math.random() * 100) + 1);
+        let ran_name = name.slice(0,4);
+        const userId = ran_name+ran_val;
         const user = new User({
           userId,
           name,
@@ -64,7 +66,7 @@ router.post("/user_login", async (req, res) => {
         res.status(401).json({ errorMessage: "Account Not Exist" });
       } else {
         const userId = userLogin.userId;
-        const name = userLogin.name;
+        const username = userLogin.name;
         const isMatch = await bcrypt.compare(password, userLogin.password);
         if (!isMatch) {
           res.status(403).json({ errorMessage: "Enter Correct Details" });
@@ -75,7 +77,7 @@ router.post("/user_login", async (req, res) => {
               expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
-            res.cookie("name", name, {
+            res.cookie("username", username, {
               expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
@@ -117,7 +119,9 @@ router.post("/driver_register", async (req, res) => {
       } else if (password != cpassword) {
         return res.status(423).json({ error: "Password are not matched" });
       } else {
-        const driverId = Date.now();
+        let ran_val = Math.floor((Math.random() * 100) + 1);
+        let ran_name = name.slice(0,4);
+        const driverId = ran_name+ran_val;
         const driver = new Driver({
           driverId,
           name,
@@ -154,7 +158,7 @@ router.post("/driver_login", async (req, res) => {
         res.status(401).json({ errorMessage: "Account Not Exist" });
       } else {
         const driverId = driverLogin.driverId;
-        const name = driverLogin.name;
+        const driverName = driverLogin.name;
         const isMatch = await bcrypt.compare(password, driverLogin.password);
         if (!isMatch) {
           res.status(403).json({ errorMessage: "Enter Correct Details" });
@@ -165,7 +169,7 @@ router.post("/driver_login", async (req, res) => {
               expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
-            res.cookie("name", name, {
+            res.cookie("drivername", driverName, {
               expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
@@ -242,10 +246,6 @@ router.post("/admin_login", async (req, res) => {
               expires: new Date(Date.now() + 1000000),
               httpOnly: false,
             });
-            // res.cookie("name", name, {
-            //   expires: new Date(Date.now() + 1000000),
-            //   httpOnly: false,
-            // });
             res.cookie("adminId", adminId, {
               expires: new Date(Date.now() + 1000000),
               httpOnly: false,
@@ -262,10 +262,9 @@ router.post("/admin_login", async (req, res) => {
 
 //User Complaints
 router.post("/user_complaints", async (req, res) => {
-  const { complaintId,userId, username, phone, area, locality, date, landmark, note } =
-    req.body;
+  const { userId, username, phone, area, locality, date, landmark, note } = req.body;
   if (
-    !complaintId ||
+    
     !userId ||
     !username ||
     !phone ||
@@ -278,7 +277,9 @@ router.post("/user_complaints", async (req, res) => {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   } else {
     try {
-      const complaintId = Date.now();
+      let ran_val = Math.floor((Math.random() * 100) + 1);
+      let ran_name = username.slice(0,4);
+      const complaintId = ran_name+ran_val;
       const complaint = new Complaints({
         complaintId,
         userId,
@@ -489,9 +490,27 @@ router.patch("/update_action/:id", async (req, res) => {
   }
 });
 
-//Logout
-router.get("/logout", (req, res) => {
+// Admin Logout
+router.get("/admin_logout", (req, res) => {
+  res.clearCookie("admintoken", { path: "/" });
+  res.clearCookie("adminName", { path: "/" });
+  res.clearCookie("adminId", { path: "/" });
+  res.status(200).send("User Logout");
+});
+
+// User Logout
+router.get("/user_logout", (req, res) => {
   res.clearCookie("usertoken", { path: "/" });
+  res.clearCookie("username", { path: "/" });
+  res.clearCookie("userId", { path: "/" });
+  res.status(200).send("User Logout");
+});
+
+// Driver Logout
+router.get("/driver_logout", (req, res) => {
+  res.clearCookie("drivertoken", { path: "/" });
+  res.clearCookie("driverName", { path: "/" });
+  res.clearCookie("driverId", { path: "/" });
   res.status(200).send("User Logout");
 });
 
