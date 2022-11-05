@@ -34,6 +34,7 @@ const AdminLogin = () => {
                     Cookies.remove('adminId', { path: '' });
                     window.alert("User Logged Out");
                     navigate('/');
+                    navigate('/');
                     window.location.reload();
                 }
                 else{
