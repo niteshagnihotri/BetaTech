@@ -21,9 +21,9 @@ const DriverDashboard = () => {
   };
 
   const getAssignTask = async () => {
-    var driverName = Cookies.get("name");
+    var driverName = Cookies.get("drivername");
+    console.log(driverName)
     try {
-      // console.log(driver)
       let response = await fetch(`/get_driver_actions/${driverName}`, {
         method: "GET",
       });

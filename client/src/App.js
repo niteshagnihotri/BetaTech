@@ -32,7 +32,7 @@ function App() {
         <Route path="/driver_dashboard/driver_task" element={<DriverAssignTask />} />
         <Route path="/admin_dashboard/" element={<AdminDashboard/>} />
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }
