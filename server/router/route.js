@@ -339,6 +339,25 @@ router.get("/get_complaints", async (req, res) => {
   }
 });
 
+//Driver assigned action
+router.get("/get_driver_actions/:name", async (req, res) => {
+  
+  const data = await AdminAction.find({drivername: req.params.name});
+  try {
+    res.status(200).json({
+      status: "Success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+});
+
 //Get User Complaints
 router.get("/get_user_complaints/:id", async (req, res) => {
   
@@ -395,6 +414,11 @@ router.post("/admin_actions", async (req, res) => {
     }
   }
 });
+
+
+
+
+
 
 //Create Bin
 router.post("/create_bin", async (req, res) => {
