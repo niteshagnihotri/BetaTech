@@ -23,7 +23,7 @@ const ComplaintsHistory = () => {
   }, [complains])
 
   return (
-    <>
+   <>
       <UserDashboard />
 
       <div>
@@ -69,8 +69,7 @@ const ComplaintsHistory = () => {
           </table>
         </div>
       </div>
-    </div>
-    </>
+   </>
   );
 };
 

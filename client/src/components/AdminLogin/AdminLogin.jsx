@@ -33,7 +33,7 @@ const AdminLogin = () => {
                     Cookies.remove('admintoken', { path: '' });
                     Cookies.remove('adminId', { path: '' });
                     window.alert("User Logged Out");
-                    navigate('/login');
+                    navigate('/');
                     window.location.reload();
                 }
                 else{
@@ -41,7 +41,7 @@ const AdminLogin = () => {
                     Cookies.remove('adminId', { path: '' });
                     console.log("user already logged out");
                 }
-            }, 100000);
+            }, 10000000);
 
         }
         else if (res.status === 403) {
