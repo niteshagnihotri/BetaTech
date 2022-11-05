@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 
 const DriverLogin = () => {
 
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -26,6 +28,7 @@ const DriverLogin = () => {
             else if (res.status === 201) {
                 // dispatch({type : "USER", payload: true})
                 window.alert("Login Successfull");
+                navigate('/driver_dashboard')
                 // window.alert("Login Successfull");
                 // history("/");
                 setTimeout(()=>{
@@ -33,7 +36,7 @@ const DriverLogin = () => {
                     if(drivertoken){
                         // dispatch({type : "USER", payload: false});
                         Cookies.remove('drivertoken', { path: '' });
-                        Cookies.remove('name', { path: '' });
+                        Cookies.remove('drivername', { path: '' });
                         Cookies.remove('driverId', { path: '' });
                         window.alert("driver Logged Out");
                         // history('/login');
@@ -45,7 +48,7 @@ const DriverLogin = () => {
                         Cookies.remove('driverId', { path: '' });
                         console.log("driver already logged out");
                     }
-                }, 100000);
+                }, 10000000);
 
             }
             else if (res.status === 403) {
