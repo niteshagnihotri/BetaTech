@@ -37,7 +37,7 @@ const UserLogin = () => {
               window.alert("User Logged Out");
               navigate('/user_login');
             }
-          }, 100000);
+          }, 1000000);
         } else if (res.status === 403) {
           window.alert("Enter Correct Details");
         } else if (res.status === 401) {

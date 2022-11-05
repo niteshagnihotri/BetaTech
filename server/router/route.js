@@ -14,8 +14,9 @@ const driverAssignBin = require("../models/assignBin");
 
 //User Register
 router.post("/user_register", async (req, res) => {
-  const { name, email, phone, city, password, cpassword } = req.body;
-  if (!name || !email || !phone || !city || !password || !cpassword) {
+  const { name, email, password, cpassword } = req.body;
+  // console.log(r)
+  if (!name || !email || !password || !cpassword) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   } else if (password !== cpassword) {
     res.status(402).json({ errorMessage: "Password Should Be Same" });
@@ -35,8 +36,6 @@ router.post("/user_register", async (req, res) => {
           userId,
           name,
           email,
-          phone,
-          city,
           password,
           cpassword,
         });
@@ -97,12 +96,10 @@ router.post("/user_login", async (req, res) => {
 
 //Driver Register
 router.post("/driver_register", async (req, res) => {
-  const { name, email, phone, city, password, cpassword, licenseid } = req.body;
+  const { name, email, password, cpassword, licenseid } = req.body;
   if (
     !name ||
     !email ||
-    !phone ||
-    !city ||
     !password ||
     !cpassword ||
     !licenseid
@@ -126,8 +123,6 @@ router.post("/driver_register", async (req, res) => {
           driverId,
           name,
           email,
-          phone,
-          city,
           password,
           cpassword,
           licenseid,
