@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const ComplaintsHistory = () => {
 
-  const [complains, setComplains] = useState(false);
+  const [complains, setComplains] = useState([]);
 
   const loadComplains = async () => {
     var userToken = Cookies.get("usertoken");
@@ -20,7 +20,7 @@ const ComplaintsHistory = () => {
 
   useEffect(() => {
     loadComplains();
-  }, [complains])
+  }, [])
 
   return (
    <>
@@ -50,7 +50,7 @@ const ComplaintsHistory = () => {
             </thead>
             <tbody>
               {
-                complains.map((item, index) => (
+                 complains.map((item, index) => (
                   <tr key={index} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                     <th
                       scope="row"
