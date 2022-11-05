@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const UserDashboard = () => {
+
+  const username = Cookies.get("username");
+  const userId = Cookies.get("userId");
+  
   return (
     <>
       <aside class="w-64 fixed " aria-label="Sidebar">
@@ -13,9 +18,9 @@ const UserDashboard = () => {
               class="rounded-full w-24 mb-4  "
               alt="Avatar"
             />
-                <h2 className="text-white text-xl items-center mb-2 first-letter:" >Jho Deo</h2>
+                <h2 className="text-white text-xl items-center mb-2 first-letter:" >{username}</h2>
                 <div className="mail text-white text-sm ">
-                    example@gmail.com
+                    {userId}
                 </div>
           </div>
           <ul className="space-y-2">
