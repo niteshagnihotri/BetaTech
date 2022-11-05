@@ -18,13 +18,17 @@ const Navbar = () => {
     else {
       setCookie(false);
     }
-  }, [cookie])
+  }, [Cookies.get()])
 
   const adminLogout = async () =>{
     await fetch('/admin_logout')
     .then((res)=>{
-      window.alert(res.status)
+      window.alert("Logout SuccessFull")
       navigate("/");
+      setCookie(false);
+      Cookies.remove("admintoken", { path: "" });
+      Cookies.remove("adminName", { path: "" });
+      Cookies.remove("adminId", { path: "" });
     })
     .catch(error=>console.log(error));
   }
@@ -32,16 +36,25 @@ const Navbar = () => {
   const userLogout = async () =>{
     await fetch('/user_logout')
     .then((res)=>{
-      window.alert(res.status);
+      window.alert("Logout SuccessFull");
       navigate("/");
+      Cookies.remove("usertoken", { path: "" });
+      Cookies.remove("username", { path: "" });
+      Cookies.remove("userId", { path: "" });
+      setCookie(false);
     })
     .catch(error=>console.log(error));
   }
   const driverLogout = async () =>{
     await fetch('/driver_logout')
     .then((res)=>{
-      window.alert(res.status)
+      window.alert("Logout SuccessFull")
       navigate("/");
+      Cookies.remove("drivertoken", { path: "" });
+      Cookies.remove("drivername", { path: "" });
+      Cookies.remove("driverId", { path: "" });
+      
+      setCookie(false);
     })
     .catch(error=>console.log(error));
   }
@@ -76,7 +89,7 @@ const Navbar = () => {
                 //   <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                 // </li> */}
 
-                  <h1>hello from user</h1>
+                  <h1 className="text-white">hello from user</h1>
                 </ul>
               </div>
             </div>
@@ -103,7 +116,7 @@ const Navbar = () => {
               </div>
               <div className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul className="flex flex-col mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0  md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-700 dark:border-gray-700">
-                  <h1>Hello from admin</h1>
+                  <h1 className="text-white">Hello from admin</h1>
                 </ul>
               </div>
             </div>
@@ -131,7 +144,7 @@ const Navbar = () => {
               </div>
               <div className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul className="flex flex-col mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0  md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-700 dark:border-gray-700">
-                  <h1>hello from driver</h1>
+                  <h1 className="text-white">hello from driver</h1>
                 </ul>
               </div>
             </div>
