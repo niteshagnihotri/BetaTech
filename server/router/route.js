@@ -358,25 +358,25 @@ router.get("/get_driver_actions/:name", async (req, res) => {
   }
 });
 
-// //Get User Complaints
-// router.get("/get_user_complaints/:id", async (req, res) => {
-//   const { id: userId } = req.params;
-//   console.log(req.params.id)
-//   const data = await Complaint.findById({id: userId});
-//   try {
-//     res.status(200).json({
-//       status: "Success",
-//       data: {
-//         data,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       status: "Failed",
-//       message: err,
-//     });
-//   }
-// });
+//Get User Complaints
+router.get("/get_user_complaints/:id", async (req, res) => {
+  
+  const data = await Complaint.find({userId: req.params.id});
+  console.log(data);
+  try {
+    res.status(200).json({
+      status: "Success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+});
 
 //Admin Action
 router.post("/admin_actions", async (req, res) => {
