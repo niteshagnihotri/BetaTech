@@ -12,6 +12,7 @@ import Dashboard from "./components/UserDashboard/Dashboard";
 import ComplaintsHistory from "./components/ComplaintsHistory/ComplaintsHistory";
 import DriverDashboard from "./components/DriverDashboard/DriverDashboard";
 import DriverAssignTask from "./components/DriverAssignTask/DriverAssignTask";
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
         <Route path="/user_dashboard/comp_history" element={<ComplaintsHistory />} />
         <Route path="/driver_dashboard" element={<DriverDashboard />} />
         <Route path="/driver_dashboard/driver_task" element={<DriverAssignTask />} />
-
+        <Route path="/admin_dashboard/" element={<AdminDashboard/>} />
       </Routes>
       <Footer/>
     </div>
