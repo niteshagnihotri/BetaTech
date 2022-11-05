@@ -41,7 +41,8 @@ const AdminLogin = () => {
                     Cookies.remove('adminId', { path: '' });
                     console.log("user already logged out");
                 }
-            }, 1000000);
+            }, 10000000);
+
 
         }
         else if (res.status === 403) {
