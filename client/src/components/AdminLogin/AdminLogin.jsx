@@ -43,10 +43,6 @@ const AdminLogin = () => {
                     console.log("user already logged out");
                 }
             }, 10000000);
-<<<<<<< HEAD
-=======
-
->>>>>>> 56a66660fa7937443f903044a202e97a52183302
 
         }
         else if (res.status === 403) {

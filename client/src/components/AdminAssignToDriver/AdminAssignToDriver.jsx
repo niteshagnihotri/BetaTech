@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AdminSideDashboard from "../AdminDashboard/AdminSideDashboard";
-import AdminManagerAssignBin from "./AdminManageAssignBin";
 
-const AdminManageBin = () => {
+const AdminAssignToDriver = () => {
+    const [complaintId, setcomplaintId] = useState("")
   const [drivername, setDriverName] = useState("");
   const [area, setArea] = useState("");
   const [locality, setLocality] = useState("");
   const [landmark, setLandmark] = useState("");
   const [date, setDate] = useState("");
-  const [action, setAction] = useState("");
+  const [status, setStatus] = useState("")
   const [btnDisable, setBtnDisable] = useState(false);
-
-  const allClear = () =>{
-     setDriverName("")
-     setArea("")
-     setLocality("")
-     setLandmark("")
-     setDate("")
-     setAction("")
-  }
-
-  useEffect(() => {
-    
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      let response = await fetch("/create_bin", {
+      let response = await fetch("/admin_actions", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
@@ -36,40 +23,39 @@ const AdminManageBin = () => {
         },
         credentials: "include",
         body: JSON.stringify({
+          complaintId,
           drivername,
           area,
           locality,
           landmark,
-          action,
           date,
+          status
         }),
       });
 
       let data = await response.text();
       console.log(data);
-      allClear()
-      window.alert("Bin Created Successfully");
+      window.alert("Complaints Assigned to Drivers");
     } catch (error) {
       console.log(error);
     }
   };
 
-
   return (
     <div>
       <AdminSideDashboard />
-      <div className="w-full flex">
-        <section className="text-gray-400 bg-gray-900 body-font flex justify-end mt-[100px] w-full  h-[100%]">
-          <div className="w-[60%] bg-gray-800 mt-[40px] bg-opacity-50 rounded-lg px-10 py-10 flex flex-col justify-center   md:mt-0 ml:32">
+      <div>
+        <section className="text-gray-400 bg-gray-900 body-font flex justify-center mt-[50px] w-full  h-[100%]">
+          <div className="w-[500px] bg-gray-800 bg-opacity-50 rounded-lg px-10 py-10 flex flex-col justify-center  mt-10 md:mt-0">
             <h2 className="text-white text-lg font-bold title-font mb-5 text-center">
-              Create Bin
+              Complaints Assign to Drivers
             </h2>
             <div className="relative flex flex-col mb-4">
               <label for="username" className="leading-7 text-sm text-gray-400">
-                Driver Name
+                Complaint Id
               </label>
               <input
-                onChange={(e) => setDriverName(e.target.value)}
+                onChange={(e) => setcomplaintId(e.target.value)}
                 type="text"
                 id="username"
                 name="username"
@@ -78,10 +64,10 @@ const AdminManageBin = () => {
             </div>
             <div className="relative flex flex-col mb-4">
               <label for="phone" className="leading-7 text-sm text-gray-400">
-                Area
+                Driver Name
               </label>
               <input
-                onChange={(e) => setArea(e.target.value)}
+                onChange={(e) => setDriverName(e.target.value)}
                 type="phone"
                 id="phone"
                 name="phone"
@@ -90,10 +76,10 @@ const AdminManageBin = () => {
             </div>
             <div className="relative flex flex-col mb-4">
               <label for="area" className="leading-7 text-sm text-gray-400">
-                Locality
+                Area
               </label>
               <input
-                onChange={(e) => setLocality(e.target.value)}
+                onChange={(e) => setArea(e.target.value)}
                 type="text"
                 id="area"
                 name="area"
@@ -102,10 +88,10 @@ const AdminManageBin = () => {
             </div>
             <div className="relative flex flex-col mb-4">
               <label for="locality" className="leading-7 text-sm text-gray-400">
-                Landmark
+                Locality
               </label>
               <input
-                onChange={(e) => setLandmark(e.target.value)}
+                onChange={(e) => setLocality(e.target.value)}
                 type="text"
                 id="locality"
                 name="locality"
@@ -113,14 +99,26 @@ const AdminManageBin = () => {
               />
             </div>
             <div className="relative flex flex-col mb-4">
-              <label for="email" className="leading-7 text-sm text-gray-400">
-                Action
+              <label for="landmark" className="leading-7 text-sm text-gray-400">
+                Landmark
               </label>
               <input
-                onChange={(e) => setAction(e.target.value)}
+                onChange={(e) => setLandmark(e.target.value)}
                 type="text"
                 id="landmark"
                 name="landmark"
+                className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+            <div className="relative flex flex-col mb-4">
+              <label for="date" className="leading-7 text-sm text-gray-400">
+                Status
+              </label>
+              <input
+                onChange={(e) => setStatus(e.target.value)}
+                type="text"
+                id="text"
+                name="text"
                 className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
@@ -145,12 +143,9 @@ const AdminManageBin = () => {
             </button>
           </div>
         </section>
-        <section className="text-gray-400 bg-gray-900 body-font flex justify-center mt-[100px] w-full  h-[100%]">
-        <AdminManagerAssignBin/>
-        </section>
       </div>
     </div>
   );
 };
 
-export default AdminManageBin;
+export default AdminAssignToDriver;
