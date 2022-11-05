@@ -13,17 +13,17 @@ const UserComplaints = () => {
   const [btnDisable, setBtnDisable] = useState(false);
 
   useEffect(() => {
-    if (
-      username === "" ||
-      phone === "" ||
-      area === "" ||
-      locality === "" ||
-      date === "" ||
-      landmark === "" ||
-      note === ""
-    ) {
-      setBtnDisable(true);
-    }
+    // if (
+    //   username === "" ||
+    //   phone === "" ||
+    //   area === "" ||
+    //   locality === "" ||
+    //   date === "" ||
+    //   landmark === "" ||
+    //   note === ""
+    // ) {
+    //   setBtnDisable(true);
+    // }
   }, []);
 
   const handleSubmit = async (e) => {
@@ -52,6 +52,9 @@ const UserComplaints = () => {
         }),
       })
         .then((res) => {
+          if(res.status === 204){
+            window.alert("Complaint Sent Successfully")
+          }
           if (res.status === 400) {
             window.alert("Please Valid Data");
           }

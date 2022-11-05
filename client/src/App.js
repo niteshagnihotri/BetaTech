@@ -14,6 +14,10 @@ import DriverDashboard from "./components/DriverDashboard/DriverDashboard";
 import DriverAssignTask from "./components/DriverAssignTask/DriverAssignTask";
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import AdminComplaints from "./components/AdminComplaints/AdminComplaints";
+import AdminAllDriver from "./components/AdminAllDrivers/AdminAllDriver";
+import AdminManageBin from "./components/AdminManageBin/AdminManageBin";
+import AdminAllBins from "./components/AdminAllBins/AdminAllBins";
+import AdminAssignToDriver from "./components/AdminAssignToDriver/AdminAssignToDriver";
 
 function App() {
   return (
@@ -33,7 +37,10 @@ function App() {
         <Route path="/driver_dashboard/driver_task" element={<DriverAssignTask />} />
         <Route path="/admin_dashboard/" element={<AdminDashboard/>} />
         <Route path="/admin_dashboard/admin_comp" element={<AdminComplaints/>} />
-        <Route path="/admin_dashboard/admin_driver" element={<AdminComplaints/>} />
+        <Route path="/admin_dashboard/admin_driver" element={<AdminAllDriver/>} />
+        <Route path="/admin_dashboard/admin_bin" element={<AdminManageBin/>} />
+        <Route path="/admin_dashboard/bins_created" element={<AdminAllBins/>} />
+        <Route path="/admin_dashboard/admin_todriver" element={<AdminAssignToDriver/>} />
       </Routes>
       {/* <Footer/> */}
     </div>
