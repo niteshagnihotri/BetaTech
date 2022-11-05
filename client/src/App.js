@@ -13,6 +13,7 @@ import ComplaintsHistory from "./components/ComplaintsHistory/ComplaintsHistory"
 import DriverDashboard from "./components/DriverDashboard/DriverDashboard";
 import DriverAssignTask from "./components/DriverAssignTask/DriverAssignTask";
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import AdminComplaints from "./components/AdminComplaints/AdminComplaints";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
         <Route path="/driver_dashboard" element={<DriverDashboard />} />
         <Route path="/driver_dashboard/driver_task" element={<DriverAssignTask />} />
         <Route path="/admin_dashboard/" element={<AdminDashboard/>} />
+        <Route path="/admin_dashboard/admin_comp" element={<AdminComplaints/>} />
+        <Route path="/admin_dashboard/admin_driver" element={<AdminComplaints/>} />
       </Routes>
       {/* <Footer/> */}
     </div>
