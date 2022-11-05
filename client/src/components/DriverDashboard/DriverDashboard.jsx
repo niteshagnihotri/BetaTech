@@ -87,7 +87,7 @@ const DriverDashboard = () => {
                 </h5>
               </Link>
               <p class="mb-3  text-gray-500 dark:text-gray-400 text-2xl  font-medium">
-               {count-1}
+               {count}
               </p>
               <Link
                 to="/"
