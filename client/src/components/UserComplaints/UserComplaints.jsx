@@ -52,7 +52,7 @@ const UserComplaints = () => {
         }),
       })
         .then((res) => {
-          if(res.status === 204){
+          if(res){
             window.alert("Complaint Sent Successfully")
           }
           if (res.status === 400) {

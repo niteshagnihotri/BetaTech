@@ -8,7 +8,7 @@ const Dashboard = () => {
     <UserDashboard/>
       <div className=" h-screen pl-64 bg-[#111827] text-white">
         <div className="mb-5 ml-[5rem] text-2xl font-medium pt-[100px]">
-          Welcome to user panel !! User name
+          Welcome to user panel 
         </div>
         <div className="btn mb-10 mt-5  ml-[5rem]">
           <button
