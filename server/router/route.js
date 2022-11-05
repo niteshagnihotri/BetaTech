@@ -339,11 +339,10 @@ router.get("/get_complaints", async (req, res) => {
   }
 });
 
-//Get User Complaints
-router.get("/get_user_complaints/:id", async (req, res) => {
+//Driver assigned action
+router.get("/get_driver_actions/:name", async (req, res) => {
   
-  const data = await Complaint.findById({userId: req.params.id});
-  console.log(data);
+  const data = await AdminAction.find({drivername: req.params.name});
   try {
     res.status(200).json({
       status: "Success",
@@ -358,6 +357,26 @@ router.get("/get_user_complaints/:id", async (req, res) => {
     });
   }
 });
+
+// //Get User Complaints
+// router.get("/get_user_complaints/:id", async (req, res) => {
+//   const { id: userId } = req.params;
+//   console.log(req.params.id)
+//   const data = await Complaint.findById({id: userId});
+//   try {
+//     res.status(200).json({
+//       status: "Success",
+//       data: {
+//         data,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(500).json({
+//       status: "Failed",
+//       message: err,
+//     });
+//   }
+// });
 
 //Admin Action
 router.post("/admin_actions", async (req, res) => {
@@ -395,6 +414,11 @@ router.post("/admin_actions", async (req, res) => {
     }
   }
 });
+
+
+
+
+
 
 //Create Bin
 router.post("/create_bin", async (req, res) => {
