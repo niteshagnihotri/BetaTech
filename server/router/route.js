@@ -362,7 +362,6 @@ router.get("/get_driver_actions/:name", async (req, res) => {
 router.get("/get_user_complaints/:id", async (req, res) => {
   
   const data = await Complaint.find({userId: req.params.id});
-  console.log(data);
   try {
     res.status(200).json({
       status: "Success",
