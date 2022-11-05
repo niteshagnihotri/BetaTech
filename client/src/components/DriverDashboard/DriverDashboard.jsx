@@ -17,12 +17,10 @@ const DriverDashboard = () => {
       if (taskData[i]) counter++;
     }
     setCount(counter)
-    console.log(counter)
   };
 
   const getAssignTask = async () => {
     var driverName = Cookies.get("drivername");
-    console.log(driverName)
     try {
       let response = await fetch(`/get_driver_actions/${driverName}`, {
         method: "GET",
