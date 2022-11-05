@@ -69,6 +69,7 @@ const ComplaintsHistory = () => {
           </table>
         </div>
       </div>
+    </div>
     </>
   );
 };
