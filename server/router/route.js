@@ -342,7 +342,7 @@ router.get("/get_complaints", async (req, res) => {
 //Get User Complaints
 router.get("/get_user_complaints/:id", async (req, res) => {
   
-  const data = await Complaint.findById({userId: req.params.id});
+  const data = await Complaint.find({userId: req.params.id});
   console.log(data);
   try {
     res.status(200).json({
