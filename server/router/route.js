@@ -321,6 +321,24 @@ router.get("/get_drivers", async (req, res) => {
   }
 });
 
+//Get Bins
+router.get("/get_bins", async (req, res) => {
+  const data = await Bin.find({});
+  try {
+    res.status(200).json({
+      status: "Success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+});
+
 //Get Complaints
 router.get("/get_complaints", async (req, res) => {
   const data = await Complaint.find({});
@@ -421,13 +439,14 @@ router.post("/admin_actions", async (req, res) => {
 
 //Create Bin
 router.post("/create_bin", async (req, res) => {
-  const { binId, area, locality, landmark, date } = req.body;
-  if (!binId || !area || !locality || !landmark || !date) {
+  const { drivername, area, locality, landmark, date } = req.body;
+  if (!drivername || !area || !locality || !landmark || !date) {
     res.status(401).json({ errorMessage: "Please Enter All Data" });
   } else {
     try {
       const binId = Date.now();
       const newBin = new Bin({
+        drivername,
         binId,
         area,
         locality,
