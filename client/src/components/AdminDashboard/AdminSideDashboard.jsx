@@ -11,7 +11,7 @@ export default function  AdminSideDashboard(){
               <div className="flex items-center justify-center flex-col mt-4 mb-4">
              
                 <img
-                  src="https://img.freepik.com/premium-vector/dump-truck-tipper-truck-silhouette-vector-illustration-best-truck-freight-related-industry_289688-214.jpg?w=2000"
+                  src="https://thumbs.dreamstime.com/b/admin-sign-laptop-icon-stock-vector-166205404.jpg"
                   class="rounded-full w-24 mb-4  "
                   alt="Avatar"
                 />
@@ -42,7 +42,7 @@ export default function  AdminSideDashboard(){
     
                 <li>
                   <Link
-                    to="/admin_dashboard/driver_task"
+                    to="/admin_dashboard/admin_comp"
                     class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     <svg
