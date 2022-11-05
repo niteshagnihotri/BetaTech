@@ -67,8 +67,8 @@ const UserComplaints = () => {
       <UserDashboard />
       <section className="text-gray-400 bg-gray-900 body-font h-[100%]">
         <div className="container px-5 py-24 pl-[200px] mx-auto flex justify-center  items-center">
-          <div className="w-[90%] bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col mt-10 md:mt-0">
-            <h2 className="text-white text-lg text-center font-bold title-font mb-5">
+          <div className="w-[90%]  bg-gray-800 bg-opacity-50 rounded-lg p-8 pl-28 flex flex-col mt-10 md:mt-0">
+            <h2 className="text-white text-lg font-bold title-font mb-5">
               Plz Enter Your Complaint
             </h2>
             <div className="relative flex flex-col mb-4">

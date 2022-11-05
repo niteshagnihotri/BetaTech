@@ -36,15 +36,7 @@ const UserLogin = () => {
               Cookies.remove("userId", { path: "" });
               window.alert("User Logged Out");
               navigate('/user_login');
-            } 
-            // else {
-            //   Cookies.remove("usertoken", { path: "" });
-            //   Cookies.remove("username", { path: "" });
-            //   Cookies.remove("userId", { path: "" });
-            //   console.log("user already logged out");
-            //   navigate('/user_login');
-            // }
-            // window.alert("User Logged Out")
+            }
           }, 100000);
         } else if (res.status === 403) {
           window.alert("Enter Correct Details");

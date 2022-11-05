@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -23,28 +25,23 @@ const AdminLogin = () => {
             window.alert("Please Enter ID or Password");
         }
         else if (res.status === 201) {
-            // dispatch({type : "USER", payload: true})
             window.alert("Login Successfull");
-            // window.alert("Login Successfull");
-            // history("/");
+            navigate("/admin_dashboard");
             setTimeout(()=>{
                 var admintoken = Cookies.get('admintoken');
                 if(admintoken){
-                    // dispatch({type : "USER", payload: false});
                     Cookies.remove('admintoken', { path: '' });
-                    Cookies.remove('name', { path: '' });
                     Cookies.remove('adminId', { path: '' });
                     window.alert("User Logged Out");
-                    // history('/login');
+                    navigate('/login');
                     window.location.reload();
                 }
                 else{
                     Cookies.remove('admintoken', { path: '' });
-                    Cookies.remove('name', { path: '' });
                     Cookies.remove('adminId', { path: '' });
                     console.log("user already logged out");
                 }
-            }, 48000);
+            }, 100000);
 
         }
         else if (res.status === 403) {
