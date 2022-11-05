@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const DriverSidebarDashboard = () => {
-  const driverName = Cookies.get("name");
+  const driverName = Cookies.get("drivername");
   const driverId = Cookies.get("driverId");
 
     return (

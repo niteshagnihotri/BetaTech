@@ -2,30 +2,47 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import DriverSidebarDashboard from "../DriverSidebarDashboard/DriverSidebarDashboard";
 import DropdownStatus from "./DropdownStatus";
+import { FaPen } from 'react-icons/fa'
 
 const DriverAssignTask = () => {
   const [taskData, setTaskData] = useState([]);
+  const [status, setStatus] = useState('')
   useEffect(() => {
     getAssignTask();
   }, []);
 
   const getAssignTask = async () => {
     try {
-      var driverName = Cookies.get("name");
-
+      var driverName = Cookies.get("drivername");
+      console.log(driverName);
       let response = await fetch(`/get_driver_actions/${driverName}`, {
         method: "GET",
       });
 
       let data = await response.json();
       setTaskData(data.data.data);
-      // console.log(data.data.data)
+      // console.log(data.data.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // console.log(taskData);
+  const handleChange = (e) =>{
+    // console.log(e.target.value);
+    setStatus(e.target.value)
+    console.log(status)
+  }
+  const handleUpdate = async(e) =>{
+    e.preventDefault();
+
+//     let response = await fetch(`/update_action/`, { 
+//   method: "PATCH",
+// });
+
+// let data = await response.text();
+// console.log(data);
+
+  }
 
   return (
     <div>
@@ -61,7 +78,7 @@ const DriverAssignTask = () => {
             <tbody>
               {taskData.map((item) => (
                 <tr
-                  key={item}
+                  key={item._id}
                   className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                 >
                   <th
@@ -86,6 +103,34 @@ const DriverAssignTask = () => {
                   </td>
                   <td className="py-4 px-6">
                     {/* <DropdownStatus item={item} /> */}
+
+                    <form>
+                      <label
+                        for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+                      >
+                        Search
+                      </label>
+                      <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        </div>
+                        <input
+                          type="search"
+                          id="default-search"
+                          class="block p-2 pl-6 w-30% text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          defaultValue={item.status}
+                          onChange={handleChange}
+                          required=""
+                        />
+                        <button
+                          onClick={handleUpdate()}
+                          type="submit"
+                          class="text-white absolute right-20 bottom-1  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "
+                        >
+                          <FaPen/>
+                        </button>
+                      </div>
+                    </form>
                   </td>
                 </tr>
               ))}

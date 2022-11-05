@@ -246,6 +246,7 @@ const ComplaintsHistory = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </>
   );
 };
