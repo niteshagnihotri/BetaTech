@@ -1,12 +1,17 @@
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import DriverSidebarDashboard from "../DriverSidebarDashboard/DriverSidebarDashboard";
-import DropdownStatus from "./DropdownStatus";
+// import DropdownStatus from "./DropdownStatus";
 import { FaPen } from 'react-icons/fa'
+import { BiPencil } from 'react-icons/bi';
 
 const DriverAssignTask = () => {
+
+  const [editStatus, setEditStatus] = useState(false);
   const [taskData, setTaskData] = useState([]);
-  const [status, setStatus] = useState('')
+  const [newStatus, setNewStatus] = useState(null);
+  // const 
+
   useEffect(() => {
     getAssignTask();
   }, []);
@@ -14,35 +19,46 @@ const DriverAssignTask = () => {
   const getAssignTask = async () => {
     try {
       var driverName = Cookies.get("drivername");
-      console.log(driverName);
       let response = await fetch(`/get_driver_actions/${driverName}`, {
         method: "GET",
       });
 
       let data = await response.json();
       setTaskData(data.data.data);
-      // console.log(data.data.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleChange = (e) =>{
-    // console.log(e.target.value);
-    setStatus(e.target.value)
-    console.log(status)
-  }
-  const handleUpdate = async(e) =>{
-    e.preventDefault();
+  const handleUpdate = async (_id, drivername, area, locality, landmark, date) => {
+    // console.log(newStatus);
+    try {
+      let response = await fetch(`/update_action/${_id}`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          _id,
+          drivername, 
+          area, 
+          locality, 
+          landmark, 
+          status: newStatus, 
+          date
+        }),
+      });
 
-//     let response = await fetch(`/update_action/`, { 
-//   method: "PATCH",
-// });
+      let data = await response.text();
+      // window.alert("update successfull")
+    }
+    catch(error){
+      console.log(error);
+    }
+}
 
-// let data = await response.text();
-// console.log(data);
-
-  }
 
   return (
     <div>
@@ -76,64 +92,52 @@ const DriverAssignTask = () => {
               </tr>
             </thead>
             <tbody>
-              {taskData.map((item) => (
-                <tr
-                  key={item._id}
-                  className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-                >
-                  <th
-                    scope="row"
-                    className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              {
+                taskData !== undefined && taskData.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                   >
-                    {item.drivername}
-                  </th>
-                  <td className="py-4 px-6">
-                    {item.binId ? "New Bin" : "New Complaint"}
-                  </td>
-                  <td className="py-4 px-6">{item.landmark}</td>
-                  <td className="py-4 px-6">{item.locality}</td>
-                  <td className="py-4 px-6">{item.area}</td>
-                  <td className="py-4 px-6">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    <th
+                      scope="row"
+                      className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {item.date}
-                    </a>
-                  </td>
-                  <td className="py-4 px-6">
-                    {/* <DropdownStatus item={item} /> */}
-
-                    <form>
-                      <label
-                        for="default-search"
-                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+                      {item.drivername}
+                    </th>
+                    <td className="py-4 px-6">
+                      {item.binId ? "New Bin" : "New Complaint"}
+                    </td>
+                    <td className="py-4 px-6">{item.landmark}</td>
+                    <td className="py-4 px-6">{item.locality}</td>
+                    <td className="py-4 px-6">{item.area}</td>
+                    <td className="py-4 px-6">
+                      <a
+                        href="#"
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
-                        Search
-                      </label>
-                      <div class="relative">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                        </div>
+                        {item.date}
+                      </a>
+                    </td>
+                    <td className="py-4 px-6">
+                      <div className="flex items-center space-x-5">
                         <input
-                          type="search"
-                          id="default-search"
-                          class="block p-2 pl-6 w-30% text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          defaultValue={item.status}
-                          onChange={handleChange}
-                          required=""
+                          className="w-28 text-md bg-gray-500 text-white px-2 py-1.5"
+                          onChange={(e) => setNewStatus(e.target.value)}
+                          defaultValue={(item._id === editStatus ? newStatus : item.status)}
+                          disabled={editStatus !== item._id ? true : false}
                         />
-                        <button
-                          onClick={handleUpdate()}
-                          type="submit"
-                          class="text-white absolute right-20 bottom-1  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "
-                        >
-                          <FaPen/>
-                        </button>
+                        {
+                          editStatus && editStatus===item._id?
+                            <button onClick={()=>{handleUpdate(item._id, item.drivername, item.area, item.locality, item.landmark, item.date); 
+                              setEditStatus(false);}}>Save</button>
+                            :
+                            <BiPencil onClick={() =>{setEditStatus(item._id)}} fontSize="20px" style={{ cursor: "pointer" }} />
+                        }
                       </div>
-                    </form>
-                  </td>
-                </tr>
-              ))}
+
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
