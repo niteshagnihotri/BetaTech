@@ -1,3 +1,3 @@
-"# BetaTech"
+# BetaTech
 
 Hackathon Project
